@@ -13,38 +13,47 @@
 </head>
 <body>
   <div id="app">
-    <section class="modal" v-if="product">
+    <header class="header">
+      <img src="./assets/images/techno.svg" alt="Techno" class="logo">
+      <div class=cart-menu>{{cartTotal | numberPrice}} | {{cart.length}} </div>
+      <ul>
+        <li v-for="(item, index) in cart">
+          <p>{{item.nome}}</p>
+          <button @click="removeItem(index)">X</button>
+        </li>
+      </ul>
+    </header>
+    <section class="products">
+      <div v-for="item in products" @click="openModal(item.id)" :key="item.id" class="product">
+        <img :src="item.image" :alt="item.name" class="product-image">
+        <div class="product-info">
+          <span class="product-price">{{item.price | numberPrice }}</span>
+          <h2 class="product-tittle">{{item.name}}</h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" v-if="product" @click="closeModal">
       <div class="modal-container">
         <div class="modal-image">
-          <img :src="product.image" :alt="product.nome">
+          <img :src="product.img" :alt="product.nome">
         </div>
         <div class="modal-data">
+          <button @click="product = false" class="modal-close">X</button>
           <span class="modal-price">{{product.preco}}</span>
           <h2 class="modal-title">{{product.nome}}</h2>
           <p>{{product.descricao}}</p>
-          <button class="modal-button">Adicionar Item</button>
+          <button v-if="product.estoque > 0" class="modal-button" @click="addItem">Adicionar Item</button>
+          <button v-else class="modal-button disabled" disabled>Produto Esgotado</button>
         </div>
         <div class="reviews">
           <h2 class="reviews-subtittle">Avaliações</h2>
           <ul>
             <li v-for="review in product.reviews" class="review">
               <p class="review-description">{{review.descricao}}</p>
-              <p class="review-user">{{review.nome}} | {{review.estrelas}}</p>
+              <p class="review-user">{{review.nome}} | {{review.estrelas}} estrelas </p>
             </li>
           </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="products">
-      <div v-for="item in products" @click="fetchProduct(item.id)" :key="item.id" class="product">
-        <img :src="item.image" :alt="item.name" class="product-image">
-        <div class="product-info">
-          <span class="product-price">{{item.price | numberPrice }}</span>
-          <h2 class="product-tittle">{{item.name}}</h2>
-          <h2>
-
-          </h2>
         </div>
       </div>
     </section>

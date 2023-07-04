@@ -1,0 +1,55 @@
+/* Reset CSS */
+body, h1, h2, ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+* {
+  box-sizing: border-box;
+  color: red;
+}
+
+/* General CSS */
+
+body {
+  background: linear-gradient(to right, #1A1A1A 30%, #FFFFFF 30%);
+  font-family: "Noto Serif";
+}
+
+#app {
+  padding: 0 80px;
+}
+
+/* PRODUCT LIST */
+.products {
+  max-width: 900px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  background: #FFFFFF;
+  box-shadow: 0 0 2rem rgba(0,0,0,.1 );
+}
+
+.product-image {
+  max-width: 300px;
+  margin-right: 40px;
+}
+
+.product-title {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.product-price {
+  color: rgba(0, 0, 0, .5);
+}
